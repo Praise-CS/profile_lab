@@ -1,0 +1,662 @@
+/* =========================
+   GENERAL
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f6f8fc, #e0e7ff);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LIGHT MODE (Default) */
+body.light {
+  background-color: #f6f8fc;
+  color: #222;
+}
+
+/* DARK MODE */
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Card colors adjust in dark mode */
+body.dark .card,
+body.dark .projects-container,
+body.dark .about-container,
+body.dark .home-container {
+  background: #1e1e1e !important;
+  color: #f1f1f1 !important;
+}
+
+/* Small utility text styles */
+.muted-text {
+  color: #6b7280;
+  text-align: center;
+}
+
+.error-text {
+  color: #b91c1c;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Base card style */
+.card {
+  border: none;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  padding: 1.5rem;
+}
+
+/* Generic page title + subtitles */
+.page-title {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #6c63ff;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   HEADER & NAVBAR
+   ========================= */
+
+.header {
+  width: 100%;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-title {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Main nav bar */
+.navbar {
+  background: linear-gradient(90deg, #444093, #836fff);
+  padding: 0.9rem 1.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+  max-width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Brand / logo */
+.nav-brand .brand-link {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+/* Links container */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Individual links */
+.nav-link {
+  color: #f9fafb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Active route link */
+.nav-link.active {
+  background: #ffffff;
+  color: #3d3983;
+}
+
+/* Theme toggle pill button */
+.theme-toggle {
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.14);
+  color: #f9fafb;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #ffffff;
+  display: block;
+}
+
+/* DARK MODE NAVBAR OVERRIDE */
+body.dark .navbar {
+  background: #000000;
+}
+
+/* Dark mode nav links: lighter pills & text */
+body.dark .nav-link {
+  color: #e5e7eb;
+}
+
+body.dark .nav-link:hover {
+  background: rgba(148, 163, 184, 0.25);
+}
+
+body.dark .nav-link.active {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* Dark mode theme toggle – slightly lighter */
+body.dark .theme-toggle {
+  background: rgba(249, 250, 251, 0.1);
+  color: #e5e7eb;
+}
+
+/* =========================
+   RESPONSIVE NAV
+   ========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.8rem 1.1rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 14px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(150deg, #6863cd, #4f46e5);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    display: none; /* default hidden */
+    z-index: 50;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .theme-toggle {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 0.3rem;
+  }
+}
+
+/* =========================
+   HOME (consistent card look)
+   ========================= */
+
+#home {
+  flex: 1;
+  padding: 3rem 1rem;
+}
+
+.home-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero block */
+.hero-card {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #4f46e5;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.home-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.home-subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-top: 0.5rem;
+}
+
+/* Hero actions */
+.hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* Primary & outline buttons */
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.08s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(129, 140, 248, 0.45);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(129, 140, 248, 0.6);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #4f46e5;
+  border: 1px solid rgba(129, 140, 248, 0.6);
+}
+
+.btn-outline:hover {
+  background: rgba(129, 140, 248, 0.08);
+}
+
+/* Weather column */
+.home-grid {
+  display: flex;
+  align-items: stretch;
+}
+
+.home-grid .card {
+  width: 100%;
+}
+
+/* Weather card specifics */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.8rem;
+}
+
+.weather-details {
+  margin-top: 0.5rem;
+}
+
+.weather-city {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-bottom: 0.4rem;
+}
+
+.weather-temp {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.temp-value {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.temp-unit {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.weather-desc {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 0.6rem;
+}
+
+.weather-extra {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* =========================
+   ABOUT
+   ========================= */
+
+.about-section {
+  flex: 1;
+  padding: 3rem 1rem;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Info section cards */
+.about-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.info-card {
+  padding: 1.25rem 1.5rem;
+}
+
+.info-card h2 {
+  color: #6c63ff;
+  margin-bottom: 0.6rem;
+}
+
+.info-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* =========================
+   SKILLS (Interactive UI)
+   ========================= */
+
+.skills-section {
+  margin-top: 2rem;
+}
+
+/* Wrapper around search + chips */
+.skills-controls {
+  max-width: 650px;
+  margin: 0 auto 1.75rem auto;
+  padding: 0.9rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Search input */
+.skill-search {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  font-size: 0.95rem;
+  background: #f9fafb;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.skill-search::placeholder {
+  color: #9ca3af;
+}
+
+.skill-search:focus {
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.25);
+}
+
+/* Filter chip row */
+.skill-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+/* Modern pill buttons */
+.chip {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  padding: 0.28rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #f9fafb;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.08s ease;
+}
+
+.chip:hover {
+  background: #eef2ff;
+  border-color: #818cf8;
+  box-shadow: 0 2px 8px rgba(129, 140, 248, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Active chip = filled pill */
+.chip-active {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(129, 140, 248, 0.5);
+}
+
+/* Skills grid (cards) */
+.skills-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.skills-title {
+  color: #4f46e5;
+  margin-bottom: 0.3rem;
+}
+
+.skills-category {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Dark mode tweaks for skills */
+body.dark .skills-controls {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+body.dark .skill-search {
+  background: #020617;
+  border-color: rgba(75, 85, 99, 0.9);
+  color: #e5e7eb;
+}
+
+body.dark .skill-search::placeholder {
+  color: #6b7280;
+}
+
+body.dark .chip {
+  background: #020617;
+  border-color: rgba(75, 85, 99, 0.9);
+  color: #e5e7eb;
+}
+
+body.dark .chip-active {
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+  border-color: transparent;
+}
+
+/* =========================
+   PROJECTS
+   ========================= */
+
+.projects-container {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 2.5rem 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.projects-title {
+  font-size: 2.5rem;
+  color: #6c63ff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.projects-subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Cards in Projects page (from API) */
+.project-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #8baaed;
+  margin-bottom: 0.4rem;
+}
+
+.project-author,
+.project-languages,
+.project-description {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.35rem;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.footer .footer-text {
+  margin-right: 1rem;
+  cursor: default;
+  color: #555;
+}

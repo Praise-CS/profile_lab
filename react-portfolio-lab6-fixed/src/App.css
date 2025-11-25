@@ -1,0 +1,178 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+/* ----------------------------------------------------
+   HEADER BASE STYLING
+---------------------------------------------------- */
+.header {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ----------------------------------------------------
+   NAVBAR LAYOUT
+---------------------------------------------------- */
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BRAND */
+.nav-brand .brand-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-brand .brand-link:hover {
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------
+   DESKTOP NAV LINKS
+---------------------------------------------------- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ----------------------------------------------------
+   THEME SWITCH BUTTON
+---------------------------------------------------- */
+.theme-toggle {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease-in-out;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------
+   HAMBURGER (MOBILE)
+---------------------------------------------------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--text);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* ----------------------------------------------------
+   MOBILE NAV MENU
+---------------------------------------------------- */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--bg);
+    width: 200px;
+    padding: 1rem 1.2rem;
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+
+    transform: translateX(120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
